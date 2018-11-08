@@ -25,7 +25,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Maksuco\\LangJson\\LangJsonServiceProvider"
+                "Maksuco\\langjson\\LangJsonServiceProvider"
             ]
         }
     }
