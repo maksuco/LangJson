@@ -19,13 +19,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Maksuco\\Lang-Json\\": "src"
+            "Maksuco\\LangJson\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Maksuco\\langjson\\LangJsonServiceProvider"
+                "Maksuco\\LangJson\\LangJsonServiceProvider"
             ]
         }
     }
