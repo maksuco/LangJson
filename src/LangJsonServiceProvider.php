@@ -18,9 +18,10 @@ class LangJsonServiceProvider extends ServiceProvider
       $this->mergeConfigFrom(
           __DIR__ . '/config/langjson.php', 'langjson'
       );
+      $this->loadViewsFrom(app_path('vendors/maksuco/langjson/src/views'), 'langjson');
       $this->publishes([
           __DIR__ . '/config/langjson.php' => config_path('langjson.php'),
-          __DIR__ . '/views' => resource_path('views/vendor/langjson')
+          //__DIR__ . '/views' => resource_path('views/vendor/langjson')
       ]);
     }
 

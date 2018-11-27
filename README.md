@@ -23,6 +23,6 @@ php artisan vendor:publish --provider="Maksuco\LangJson\LangJsonServiceProvider"
 ## Usage
 Now just visit yourprojectname/langjson
 
-make sure your login with the user id you define in the config file
+For security make sure your login with the user id you define in the config file
 
 
