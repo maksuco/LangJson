@@ -18,12 +18,11 @@ class LangJsonController extends Controller
 		$all_keys = [];
 		foreach($langs as $lang){
 			$file_data = Storage::createLocalDriver(['root' => base_path('resources/lang')])->get($lang.'.json');
-			$words[$lang] = json_decode($file_data,true);
+			$files[$lang] = json_decode($file_data,true);
 		}
+		$app = $this->getTranslationsFromFiles();
 
-		$scan = $this->getTranslationsFromFiles();
-
-		//dd($words,$langs);
+		
 		////$rootPath = '/your/absolute/path';
 		////dd($files,$errors_name);
 		//foreach($files as $file){
@@ -39,16 +38,7 @@ class LangJsonController extends Controller
 		//}
 		//dd($words,$langs,$scan);
 
-		return view('langjson::index', compact('words','langs','scan'));
-	}
-	
-	public function post(Request $request)
-	{
-		$langs = config('langjson.lang_files');
-		foreach($langs as $lang){
-			Storage::createLocalDriver(['root' => base_path('resources/lang')])->put($lang.'.json', request()->$lang);
-		}
-		return redirect(route('langjson'));
+		return view('langjson::index', compact('langs','files','app'));
 	}
 
 	private function getTranslationsFromFiles()
@@ -72,7 +62,9 @@ class LangJsonController extends Controller
 			$file_content = $disk->get($file);
 			preg_match_all($regex, $file_content, $matches);
 			$allMatches = array_merge($allMatches,$matches[1]);
+			$filenames[] = $file;
 		}
+			//dd($file,$filenames,$allMatches,$matches);
 		$disk = Storage::createLocalDriver(['root' => base_path('public/'.config('langjson.assets'))]);
 		foreach($disk->allFiles('') as $file) {
 			$file_content = $disk->get($file);
@@ -82,5 +74,15 @@ class LangJsonController extends Controller
 
 		return collect($allMatches)->unique()->sort()->values()->all();
 	}
+	
+	public function post(Request $request)
+	{
+		$langs = config('langjson.lang_files');
+		foreach($langs as $lang){
+			Storage::createLocalDriver(['root' => base_path('resources/lang')])->put($lang.'.json', request()->$lang);
+		}
+		return redirect(route('langjson'));
+	}
+
 
 }

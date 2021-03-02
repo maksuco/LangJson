@@ -14,7 +14,7 @@ class LangJsonServiceProvider extends ServiceProvider
     public function boot()
     {
       $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
-      $this->loadViewsFrom(__DIR__ . '/views', 'index');
+      $this->loadViewsFrom(__DIR__ . '/views', 'langjson');
       $this->mergeConfigFrom(
           __DIR__ . '/config/langjson.php', 'langjson'
       );
