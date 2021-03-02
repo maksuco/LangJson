@@ -1,6 +1,6 @@
 <?php
 
-namespace Maksuco\LangJson\Http\Controllers;
+namespace Maksuco\LangJson\LangJson\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
