@@ -7,27 +7,29 @@ use Livewire\Component;
 class LangJson extends Component
 {
 			public $groups = [];
+			pulic $searchResults = [];
 
-				public function mount()
+			public function mount()
+			{
+				
+			}
+
+
+				public function search($term)
 				{
-						ray()->clearAll();
-						$this->groups = json_decode('[
-								{"id":1,"label":"Michael","tasks":[
-										{"id":1233,"title":"First row"},
-										{"id":12,"title":"Second Michael row"}
-								]},
-								{"id":4,"label":"Gina","tasks":[
-										{"id":133,"title":"Super row"},
-										{"id":445,"title":"Max row"}
-								]}
-						]', true);
-				}
-
-
-				public function updateGroupOrder($orderIds)
-				{
-						ray($this->groups);
-						ray($orderIds,'updateGroupOrder');
+					
+					function search_array($this->array, $term) {
+						foreach ($array AS $key => $value) {
+							if (stristr($key, $term) === FALSE AND stristr($value, $term) === FALSE) {
+								continue;
+							} else {
+										$results[] = (string) $key;
+							}
+						}
+						return $results;
+					}
+					$this->searchResults = $results;
+					
 				}
 
 
