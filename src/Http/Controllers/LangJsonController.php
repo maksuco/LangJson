@@ -1,7 +1,5 @@
 <?php
-
-namespace Maksuco\LangJson\LangJson\Http\Controllers;
-
+namespace Maksuco\LangJson\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -16,11 +14,17 @@ class LangJsonController extends Controller
 		}
 		$errors_name = [];
 		$all_keys = [];
+		$diff_keys_with_files = [];
+		$app_files = $this->getTranslationsFromFiles();
+		
 		foreach($langs as $lang){
 			$file_data = Storage::createLocalDriver(['root' => base_path('resources/lang')])->get($lang.'.json');
 			$files[$lang] = json_decode($file_data,true);
+			$diff_keys_with_files[$lang] = array_diff_key($array1, $app_files);
 		}
-		$app = $this->getTranslationsFromFiles();
+		
+		
+		return json($diff_keys_with_files);
 
 		
 		////$rootPath = '/your/absolute/path';
@@ -38,7 +42,7 @@ class LangJsonController extends Controller
 		//}
 		//dd($words,$langs,$scan);
 
-		return view('langjson::index', compact('langs','files','app'));
+		return view('langJsonViews::dashboard', compact('langs','files','$app_files'));
 	}
 
 	private function getTranslationsFromFiles()

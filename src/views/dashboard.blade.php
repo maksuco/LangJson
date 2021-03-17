@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LangJson {{config('app.name')}}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/maksuco/maksucocss@master/public/assets/maksucocss.css">
 </head>
 <body class="bg-light">
     <main role="main" class="container">
@@ -17,9 +16,9 @@
         @foreach($langs as $lang)
           <span class="text-uppercase">{{$lang}}:</span> {{count($files[$lang])}} keys | 
         @endforeach
-          <span class="text-uppercase">APP:</span> {{count($app)}} keys | 
+          <span class="text-uppercase">APP:</span> {{count($app_files)}} keys | 
           ->the idea are that this counts are realtime using vue</p>
-        <p class="lead"><span class="text-danger">Mising Keys: 54 404 Keys 97 Un-translated</span></p>
+        <p class="lead"><span class="text-danger">Missing Keys: 54 404 Keys 97 Un-translated</span></p>
         <a href="#" class="btn btn-secondary btn-sm">Show un-translated</a>
         <a href="#" class="btn btn-secondary btn-sm">Show missing in files</a>
         <a href="#" class="btn btn-secondary btn-sm">Show missing in app</a>
@@ -91,14 +90,13 @@
     </main>
 
 @php
-    var_dump($files,$app,$langs)
+    var_dump($files,$app_files,$langs)
 @endphp
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">Made with love by</p>
         <ul class="list-inline">
           <li class="list-inline-item"><a href="https://maksuco.com">Maksuco</a></li>
-          <li class="list-inline-item"><a href="https://lochawala.com">Pratik</a></li>
         </ul>
       </footer>
   <script>
